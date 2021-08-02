@@ -1,0 +1,4 @@
+[
+    {"type": "APARTMENT","room_number":2,"area": 40,"kitchen_equipped":1,"furnished":0,"fireplace": 0,
+     "terrace":1,"terrace_area":18,"garden":1,"garden_area":19,"land_surface":0,"facade_count":3,"swimming_pool":1,"building_condition": "GOOD","Province":"BRUXELLES"}
+]

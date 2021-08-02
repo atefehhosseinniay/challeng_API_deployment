@@ -6,7 +6,7 @@ import joblib
 
 def cleaning_data():
     # import dataset scraped from immoweb during our previous challenge
-    ds = pd.read_csv(r'C:\Users\atefe\Desktop\challenge_api\data\data_admin.csv', index_col=[0])
+    ds = pd.read_csv('data_admin.csv', index_col=[0])
 
     # dropping rows without price or area
     ds.dropna(subset=['price', 'area'], inplace=True)
@@ -50,11 +50,11 @@ def cleaning_data():
 
     type_num = pd.get_dummies(ds['type'], drop_first=False)
     building_condition_num = pd.get_dummies(ds['building_condition'], drop_first=False)
-    region_num = pd.get_dummies(ds['Region'], drop_first=False)
+    
     province_num = pd.get_dummies(ds['Province'], drop_first=False)
     # subtype_num = pd.get_dummies(ds['subtype'], drop_first=False)
 
-    ds = pd.concat([ds, type_num, building_condition_num, region_num, province_num], axis=1)
+    ds = pd.concat([ds, type_num, building_condition_num, province_num], axis=1)
 
     # convert type of dummy columns to int
     ds.iloc[:, 22:] = ds.iloc[:, 22:].astype(np.int64)
@@ -66,23 +66,19 @@ def cleaning_data():
     ds["land_surface"] = ds["land_surface"].astype(np.int64)
     ds["facade_count"] = ds["facade_count"].astype(np.int64)
 
-    # drop subtype. we don't use this columns in our model.
-    ds.drop('subtype', axis=1, inplace=True)
+    # drop subtype and Region. we don't use this columns in our model.
+    ds.drop('subtype', axis=1, inplace=True)    
+    
+    ds.drop('Region', axis=1, inplace=True)
 
     return ds
 
 
 def preprocess(data):
-    model_columns = joblib.load(r'C:\Users\atefe\Desktop\challenge_api\model\model_columns.pkl')
+    model_columns = joblib.load('model_columns.pkl')
     type_num = pd.get_dummies(data['type'], drop_first=False)
     building_condition_num = pd.get_dummies(data['building_condition'], drop_first=False)
     province_num = pd.get_dummies(data['Province'], drop_first=False)
-    region_num = pd.get_dummies(data['Region'], drop_first=False)
-
-
-    data = pd.concat([data, type_num, building_condition_num, region_num, province_num], axis=1)
-    data = data.reindex(columns=model_columns, fill_value=0)
-    return data
 
 #df=cleaning_data()
 #print(df.columns)
