@@ -1,5 +1,9 @@
 # challenge_API_deployment
 
+This API return the prediction for the price of a propertie in Belgium, based on data scrapped from Immoweb.
+
+-----------------------------------------------------------------------------------------------
+
 - Repository: `challenge-api-deployment`
 - Type of Challenge: `Learning`
 - Duration: `5 days`
@@ -14,7 +18,7 @@
 - Deploy an API to Heroku with Docker.
 
 ----------------------------------------------------------------------------------------
-Dependencies
+## Dependencies
 
 - Scikit-learn
 - Pandas
@@ -23,6 +27,20 @@ Dependencies
 - Flask
 
 -------------------------------------------------------------------------------------------------
+## Installation
+
+Clone the repository:
+
+``` git clone https://github.com/atefehhosseinniay/challenge_API_deployment ```
+
+Install the requirements
+
+``` pip install -r requirement.txt ```
+
+-------------------------------------------------------------------------------------------------------
+
+
+
 ## Usage
 
 This API has been deployed with heroku under the url: https://flaskapimo.herokuapp.com/
